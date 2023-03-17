@@ -17,6 +17,13 @@ data "terraform_remote_state" "mutable" {
   }
 }
 
-output "avinash" {
-  value = data.terraform_remote_state.mutable
+data "aws_instances" "mutable" {
+  instance_tags = {
+    Name = "${var.COMPONENT}-${var.ENV}"
+  }
+  instance_state_names = ["running"]
+}
+
+output "instance" {
+  value = data.aws_instances.mutable
 }
