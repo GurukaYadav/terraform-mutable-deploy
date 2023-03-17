@@ -1,5 +1,5 @@
 resource "null_resource" "null" {
-  count = var.INSTANCE_COUNT
+  count = ""
   triggers = {
     a = timestamp()
   }
@@ -8,7 +8,7 @@ resource "null_resource" "null" {
       type     = "ssh"
       user     = jsondecode(data.aws_secretsmanager_secret_version.secret.secret_string)["SSH_USER"]
       password = jsondecode(data.aws_secretsmanager_secret_version.secret.secret_string)["SSH_PASS"]
-      host     = aws_spot_instance_request.instance.*.private_ip[count.index]
+      host     = ""
     }
 
     inline = [
