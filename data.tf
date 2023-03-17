@@ -25,5 +25,5 @@ data "aws_instances" "mutable" {
 }
 
 output "instance" {
-  value = data.aws_instances.mutable
+  value = data.aws_instances.mutable.private_ips
 }
