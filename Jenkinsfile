@@ -9,14 +9,18 @@ pipeline {
   }
 
   stages {
-    stage('terraform stages') {
+    stage('terraform') {
       steps {
         sh '''
-        terraform init
-        terraform plan
-        terraform apply -auto-approve -var COMPONENT=${COMPONENT} -var ENV=${ENV}
+          terraform init
+          terraform plan
+          terraform apply -auto-approve -var COMPONENT=${COMPONENT} -var ENV=${ENV}
         '''
       }
+    }
+  post {
+    always {
+      cleanWs()
     }
   }
 }
