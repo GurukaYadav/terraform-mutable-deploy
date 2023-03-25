@@ -6,6 +6,7 @@ pipeline {
   parameters {
     choice(name: 'COMPONENT', choices: ['cart', 'catalogue', 'user', 'frontend', 'shipping', 'payment', 'dispatch'], description: 'Choose COMPONENT')
     choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Choose ENV')
+    string(name: 'APP_VERSION', defaultValue: '', description: 'Which app version?')
   }
 
   stages {
